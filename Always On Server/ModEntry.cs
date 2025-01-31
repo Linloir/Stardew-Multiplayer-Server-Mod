@@ -932,6 +932,10 @@ namespace Always_On_Server
 
                     if (lastFragment != null)
                     {
+                        if (lastFragment == "!sleepForce") {
+                            GoToBed();
+                            this.SendChatMessage("Trying to force go to bed.");
+                        }
                         if (lastFragment == "!sleep")
                         {
                             if (currentTime >= this.Config.timeOfDayToSleep)
