@@ -453,7 +453,11 @@ namespace Always_On_Server
                 {
                     var messagetoconvert = messages[messages.Count - 1].message;
                     string actualmessage = ChatMessage.makeMessagePlaintext(messagetoconvert, true);
-                    string lastFragment = actualmessage.Split(' ')[1];
+                    string[] fragments = actualmessage.Split([':', '：'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                    if (fragments.Length < 2) {
+                        return;
+                    }
+                    string lastFragment = fragments[1];
 
                     if (lastFragment != null && lastFragment == "!pause")
                     {
@@ -928,7 +932,11 @@ namespace Always_On_Server
                 {
                     var messagetoconvert = messages[messages.Count - 1].message;
                     string actualmessage = ChatMessage.makeMessagePlaintext(messagetoconvert, true);
-                    string lastFragment = actualmessage.Split(' ')[1];
+                    string[] fragments = actualmessage.Split(['：', ':'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                    if (fragments.Length < 2) {
+                        return;
+                    }
+                    string lastFragment = fragments[1];
 
                     if (lastFragment != null)
                     {
